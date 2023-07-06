@@ -56,9 +56,14 @@ class _LoginState extends State<Login> {
                           padding: const EdgeInsets.all(5.00),
                           child: TextFormField(
                             controller: _emailTextController,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: 'email',
-                              prefixIcon: Icon(Icons.alternate_email)
+                              prefixIcon: const Icon(Icons.alternate_email),
+                              filled: true,
+                              fillColor: const Color(0xfff9f9f9),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.00)
+                              ),
                             ),
                           ),
                         ),
@@ -66,9 +71,14 @@ class _LoginState extends State<Login> {
                           padding: const EdgeInsets.all(5.00),
                           child: TextFormField(
                             controller: _passwordTextController,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: 'password',
-                              prefixIcon: Icon(Icons.password)
+                              prefixIcon: const Icon(Icons.password),
+                              filled: true,
+                              fillColor: const Color(0xfff9f9f9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.00)
+                              ),
                             ),
                             obscureText: true,
                           ),
@@ -80,7 +90,13 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        child: const Text('Forget password?', style: TextStyle(fontSize: 15.00),),
+                        child: const Text(
+                          'Forget password?',
+                          style: TextStyle(
+                            fontSize: 16.00,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                         onPressed: () {
                           //
                         },
@@ -101,15 +117,22 @@ class _LoginState extends State<Login> {
                       onPressed: () {
 
                       },
-                      child: const Text('Login', style: TextStyle(fontSize: 15.00),),
+                      child: const Text('Login', style: TextStyle(fontSize: 17.00, fontWeight: FontWeight.w600),),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.00),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15.00),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text('Or, login with...', style: TextStyle(color: Colors.black45, fontWeight: FontWeight.w500),)
+                      children: [
+                        Text(
+                          'Or, login with...',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.00,
+                            letterSpacing: 1,
+                          ),)
                       ],
                     ),
                   ),
@@ -118,25 +141,36 @@ class _LoginState extends State<Login> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                            child: Icon(Icons.face, size: 35,),
+                        Expanded(
+                          flex: 1,
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
+                              child: Icon(Icons.apple, size: 35,),
+                            ),
                           ),
                         ),
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                            child: Icon(Icons.account_balance_wallet, size: 35,),
+                        const SizedBox(width: 20,),
+                        Expanded(
+                          flex: 1,
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
+                              child: Icon(Icons.account_balance_wallet, size: 35,),
+                            ),
                           ),
                         ),
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                            child: Icon(Icons.apple, size: 35, color: Colors.black,),
+                        const SizedBox(width: 20,),
+                        Expanded(
+                          flex: 1,
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
+                              child: Icon(Icons.face, size: 35,),
+                            ),
                           ),
                         ),
                       ],
@@ -145,14 +179,21 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('New to the App?', style: TextStyle(color: Colors.black45, fontWeight: FontWeight.w500)),
+                      const Text(
+                        'New to the App?',
+                          style: TextStyle(
+                            color: Colors.black45,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.00
+                          )
+                      ),
                       TextButton(
                         onPressed: () {},
                         child: const Text(
                           'Register',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16
                           )
                         ),
                       )

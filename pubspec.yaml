@@ -58,6 +58,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Regular.ttf
+        - asset: fonts/Raleway-Black.ttf
+          weight: 700
   assets:
    - lib/assets/login.jpg
   #   - images/a_dot_ham.jpeg
