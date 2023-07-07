@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:future/pages/auth/utils.dart';
 
 class Register extends StatefulWidget {
 
@@ -78,7 +79,9 @@ class _RegisterState extends State<Register> {
                               Expanded(
                                 flex: 1,
                                 child: OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    SocialSignIn.signInWithGoogle();
+                                  },
                                   style: OutlinedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(15.00)
@@ -86,7 +89,11 @@ class _RegisterState extends State<Register> {
                                   ),
                                   child: const Padding(
                                     padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                                    child: Icon(Icons.apple, size: 35,),
+                                    child: Image(
+                                      width: 50,
+                                      height: 30,
+                                      image: AssetImage('lib/assets/google_logo.png',)
+                                    ),
                                   ),
                                 ),
                               ),
@@ -118,7 +125,7 @@ class _RegisterState extends State<Register> {
                                   ),
                                   child: const Padding(
                                     padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                                    child: Icon(Icons.face, size: 35,),
+                                    child: Icon(Icons.apple, size: 35, color: Colors.black,),
                                   ),
                                 ),
                               ),

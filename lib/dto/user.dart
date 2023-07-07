@@ -7,13 +7,17 @@ class User {
   final DateTime createdAt;
   String avatar;
   DateTime updatedAt;
+  bool isSocialAccount;
+  final String? socialPlatform;
 
   User({
     required this.username,
     required this.userEmail,
-    required this.avatar
+    required this.avatar,
+    this.socialPlatform
   }) : userId = (const Uuid()).v4(),
         createdAt = DateTime.now(),
+        isSocialAccount = false,
         updatedAt = DateTime.now();
 
   // named constructor
@@ -23,7 +27,9 @@ class User {
     required this.userEmail,
     required this.avatar,
     required this.createdAt,
-    required this.updatedAt
+    required this.updatedAt,
+    required this.isSocialAccount,
+    this.socialPlatform
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User.named(
@@ -32,7 +38,9 @@ class User {
     userId: json['userId'],
     avatar: json['avatar'] | '',
     createdAt: DateTime.parse(json['createdAt']),
-    updatedAt: DateTime.parse(json['updatedAt'])
+    updatedAt: DateTime.parse(json['updatedAt']),
+    isSocialAccount: json['isSocialAccount'],
+    socialPlatform: json['socialPlatform']
   );
 
   set setLastUpdated (DateTime lastUpdated) {

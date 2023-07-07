@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:future/pages/auth/register.dart';
+import 'package:future/pages/auth/utils.dart';
 
 class Login extends StatefulWidget {
 
@@ -151,10 +152,21 @@ class _LoginState extends State<Login> {
                                 Expanded(
                                   flex: 1,
                                   child: OutlinedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      SocialSignIn.signInWithGoogle();
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.00)
+                                      )
+                                    ),
                                     child: const Padding(
                                       padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                                      child: Icon(Icons.apple, size: 35,),
+                                      child: Image(
+                                          width: 50,
+                                          height: 30,
+                                          image: AssetImage('lib/assets/google_logo.png')
+                                      )
                                     ),
                                   ),
                                 ),
@@ -163,9 +175,18 @@ class _LoginState extends State<Login> {
                                   flex: 1,
                                   child: OutlinedButton(
                                     onPressed: () {},
+                                    style: OutlinedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.00)
+                                      )
+                                    ),
                                     child: const Padding(
                                       padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                                      child: Icon(Icons.account_balance_wallet, size: 35,),
+                                      child: Image(
+                                        width: 50,
+                                        height: 30,
+                                        image: AssetImage('lib/assets/facebook_logo.png',)
+                                      )
                                     ),
                                   ),
                                 ),
@@ -174,9 +195,14 @@ class _LoginState extends State<Login> {
                                   flex: 1,
                                   child: OutlinedButton(
                                     onPressed: () {},
+                                    style: OutlinedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.00)
+                                      )
+                                    ),
                                     child: const Padding(
                                       padding: EdgeInsets.symmetric(vertical: 10.00, horizontal: 20.00),
-                                      child: Icon(Icons.face, size: 35,),
+                                      child: Icon(Icons.apple, size: 35, color: Colors.black,),
                                     ),
                                   ),
                                 ),
