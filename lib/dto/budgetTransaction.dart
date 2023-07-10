@@ -1,4 +1,5 @@
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:uuid/uuid.dart';
 
 class BudgetTransaction {
@@ -35,4 +36,21 @@ class BudgetTransaction {
     transactionBudgetId: json['transactionBudgetId'],
     transactionType: json['transactionType']
   );
+
+  static List<FlSpot> toLineChartData(
+    List<BudgetTransaction> transactions,
+    double Function(BudgetTransaction) propertyFinder,
+    final int interval
+  ) {
+    List<FlSpot> data = [];
+    for (int i = 0; i < transactions.length; i += interval) {
+      data.add(
+        FlSpot(
+          transactions[i].transactionAmount,
+          double.parse(propertyFinder(transactions[i]).toStringAsFixed(2))
+        )
+      );
+    }
+    return data;
+  }
 }

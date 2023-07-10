@@ -3,6 +3,8 @@ import 'package:future/screens/components/budget_chart.dart';
 import 'package:future/screens/components/budget_plan_highlight.dart';
 import 'package:future/screens/components/transactions.dart';
 
+import '../dto/budgetTransaction.dart';
+
 class Home extends StatefulWidget {
 
   const Home({ super.key });
@@ -12,6 +14,44 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  final List<BudgetTransaction> transactions = <BudgetTransaction>[
+    BudgetTransaction(
+        transactionBudgetId: '1231-daef-12de-120e',
+        transactionAmount: 20.00,
+        transactionDetails: 'Food',
+        transactionTime: DateTime(2023, 07, 06),
+        transactionType: 'Food'
+    ),
+    BudgetTransaction(
+        transactionBudgetId: 'bce1-1092-12de-120e',
+        transactionAmount: 17.00,
+        transactionDetails: '2xCoffee & Noodles',
+        transactionTime: DateTime(2023, 07, 06),
+        transactionType: 'Household'
+    ),
+    BudgetTransaction(
+        transactionBudgetId: '001a-deaf-12de-120e',
+        transactionAmount: 8.20,
+        transactionDetails: 'Breakfast',
+        transactionTime: DateTime(2023, 07, 06),
+        transactionType: 'Food'
+    ),
+    BudgetTransaction(
+        transactionBudgetId: '1231-daef-12de-120e',
+        transactionAmount: 32.63,
+        transactionDetails: 'Monster curry',
+        transactionTime: DateTime(2023, 06, 26),
+        transactionType: 'Food'
+    ),
+    BudgetTransaction(
+        transactionBudgetId: 'eadb-98af-12de-120e',
+        transactionAmount: 51.00,
+        transactionDetails: 'Plates',
+        transactionTime: DateTime(2023, 07, 06),
+        transactionType: 'Kitchen'
+    )
+  ];
 
   @override
   Widget build (BuildContext context) {
@@ -32,9 +72,9 @@ class _HomeState extends State<Home> {
               flex: 2,
               child: BudgetHighlight(),
             ),
-            const Expanded(
+            Expanded(
               flex: 3,
-              child: BudgetChart(),
+              child: BudgetLineChart(transactions),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
