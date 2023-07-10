@@ -24,7 +24,7 @@ class _AppState extends State<App> {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50.00, horizontal: 15.00),
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 70, bottom: 10),
           child: _pages.elementAt(_selectedIndex),
         )
       ),

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:future/pages/app.dart';
 import 'package:future/pages/auth/register.dart';
 import 'package:future/pages/auth/utils.dart';
 
@@ -151,9 +153,18 @@ class _LoginState extends State<Login> {
                               children: [
                                 Expanded(
                                   flex: 1,
+                                  // google sign in
                                   child: OutlinedButton(
                                     onPressed: () {
-                                      SocialSignIn.signInWithGoogle();
+                                      SocialSignIn.signInWithGoogle()
+                                        .then((credentials) {
+                                          print('googleSignInResult::result => $credentials');
+                                          if (credentials.user != null) {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(builder: (context) => const App())
+                                            );
+                                          }
+                                      });
                                     },
                                     style: OutlinedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
