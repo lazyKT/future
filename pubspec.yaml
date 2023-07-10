@@ -40,6 +40,8 @@ dependencies:
   flutter_facebook_auth: ^6.0.0
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
+  intl: ^0.18.1
+  fl_chart: ^0.63.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,11 @@ flutter:
         - asset: fonts/Raleway-Regular.ttf
         - asset: fonts/Raleway-Black.ttf
           weight: 700
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono-regular.ttf
+        - asset: fonts/RobotoMono-Medium.ttf
+          weight: 500
   assets:
    - lib/assets/login.jpg
    - lib/assets/google_logo.png

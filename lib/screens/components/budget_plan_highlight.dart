@@ -22,17 +22,19 @@ class _BudgetHighlightState extends State<BudgetHighlight> {
               Text(
                 '\$240',
                 style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 25.00
+                  fontWeight: FontWeight.w600,
+                  fontSize: 25.00,
+                  fontFamily: 'mono-space'
                 ),
               ),
               SizedBox(height: 10,),
               Text(
                 'Spent this week',
                 style: TextStyle(
-                    fontSize: 16.00,
-                    color: Colors.black45,
-                    fontWeight: FontWeight.w500
+                  fontSize: 16.00,
+                  color: Colors.black45,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'RobotoMono'
                 ),
               )
             ],

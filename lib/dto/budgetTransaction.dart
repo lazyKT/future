@@ -5,6 +5,7 @@ class BudgetTransaction {
 
   final String transactionId;
   final String transactionBudgetId;
+  final String transactionType;
   DateTime transactionTime;
   double transactionAmount;
   String transactionDetails;
@@ -13,7 +14,8 @@ class BudgetTransaction {
     required this.transactionBudgetId,
     required this.transactionAmount,
     required this.transactionDetails,
-    required this.transactionTime
+    required this.transactionTime,
+    required this.transactionType
   }) : transactionId = (const Uuid()).v4();
 
   BudgetTransaction.named({
@@ -21,7 +23,8 @@ class BudgetTransaction {
     required this.transactionAmount,
     required this.transactionDetails,
     required this.transactionTime,
-    required this.transactionId
+    required this.transactionId,
+    required this.transactionType
   });
 
   factory BudgetTransaction.fromJson(Map<String, dynamic> json) => BudgetTransaction.named(
@@ -29,6 +32,7 @@ class BudgetTransaction {
     transactionAmount: json['transactionAmount'],
     transactionDetails: json['transactionDetails'],
     transactionTime: DateTime.parse(json['transactionTime']),
-    transactionBudgetId: json['transactionBudgetId']
+    transactionBudgetId: json['transactionBudgetId'],
+    transactionType: json['transactionType']
   );
 }
