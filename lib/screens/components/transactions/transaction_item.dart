@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:future/dto/budgetTransaction.dart';
+import 'package:future/screens/components/transactions/transaction_cat_icon.dart';
 import 'package:intl/intl.dart';
 
 class TransactionItem extends StatelessWidget {
@@ -22,7 +23,10 @@ class TransactionItem extends StatelessWidget {
           fontSize: 17.0
         ),
       ),
-      leading: const Icon(Icons.monetization_on_rounded),
+      leading: Padding(
+        padding: const EdgeInsets.all(10),
+        child: TransactionCategoryIcon(transactionCategory: transaction.transactionType),
+      ),
       subtitle: Text(formatDate(transaction.transactionTime)),
       trailing: Text(
         '\$ ${transaction.transactionAmount}',

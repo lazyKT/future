@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'budget_card_s.dart';
+import 'reusable/budget_card_s.dart';
 
 class BudgetHighlight extends StatefulWidget {
   const BudgetHighlight({ super.key });
@@ -23,7 +23,7 @@ class _BudgetHighlightState extends State<BudgetHighlight> {
                 '\$240',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 25.00,
+                  fontSize: 30.00,
                   fontFamily: 'mono-space'
                 ),
               ),

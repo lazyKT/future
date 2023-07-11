@@ -1,15 +1,13 @@
-import 'dart:ui';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:future/screens/components/base_line_chart.dart';
+import 'package:future/screens/components/charts/base_line_chart.dart';
 import 'package:future/shared/chart_utils/base_chart_boundary.dart';
 import 'package:future/shared/chart_utils/line_chart_boundary.dart';
 import 'package:future/shared/chart_utils/utils.dart';
 import 'package:future/shared/chart_utils/x_axis_date_title_renderer.dart';
 import 'package:future/shared/chart_utils/y_axis_number_title_renderer.dart';
 
-import '../../dto/budgetTransaction.dart';
+import '../../../dto/budgetTransaction.dart';
 
 class BudgetLineChart extends BaseLineChart {
   final List<BudgetTransaction> transactions;

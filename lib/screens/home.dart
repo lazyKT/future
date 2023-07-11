@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:future/screens/components/budget_chart.dart';
 import 'package:future/screens/components/budget_plan_highlight.dart';
-import 'package:future/screens/components/transactions.dart';
+import 'package:future/screens/components/reusable/expandable_fab/expandable_fab.dart';
+import 'package:future/screens/components/transactions/transactions.dart';
 
+import '../bindings/transaction_binding.dart';
 import '../dto/budgetTransaction.dart';
+import 'components/reusable/expandable_fab/action_button.dart';
 
 class Home extends StatefulWidget {
 
@@ -38,6 +40,13 @@ class _HomeState extends State<Home> {
         transactionType: 'Food'
     ),
     BudgetTransaction(
+        transactionBudgetId: '00ab-89ca-12de-120e',
+        transactionAmount: 83.33,
+        transactionDetails: 'Fuji Treats',
+        transactionTime: DateTime(2023, 06, 26),
+        transactionType: 'Pet'
+    ),
+    BudgetTransaction(
         transactionBudgetId: '1231-daef-12de-120e',
         transactionAmount: 32.63,
         transactionDetails: 'Monster curry',
@@ -55,35 +64,32 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build (BuildContext context) {
-    return Stack(
-      children: [
-        Column(
+    return TransactionListBinding(
+      transactions: transactions,
+      child: Scaffold(
+        backgroundColor: Colors.white38,
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             // current spending
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 30,
-              color: Colors.black12,
-            ),
             const Expanded(
-              flex: 2,
+              flex: 1,
               child: BudgetHighlight(),
             ),
-            Expanded(
-              flex: 3,
-              child: BudgetLineChart(transactions),
-            ),
+            // Expanded(
+            //   flex: 3,
+            //   child: BudgetLineChart(transactions),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   'Transactions',
                   style: TextStyle(
-                    fontSize: 17.00,
-                    fontWeight: FontWeight.w500
+                      fontSize: 17.00,
+                      fontWeight: FontWeight.w500
                   ),
                 ),
                 TextButton(
@@ -91,8 +97,8 @@ class _HomeState extends State<Home> {
                   child: const Text(
                     'See all transactions',
                     style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      decoration: TextDecoration.underline
+                        fontStyle: FontStyle.italic,
+                        decoration: TextDecoration.underline
                     ),
                   ),
                 )
@@ -104,50 +110,20 @@ class _HomeState extends State<Home> {
             )
           ],
         ),
-        Positioned(
-          right: 0,
-          bottom: 0,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Scan',
-                      style: TextStyle(
-                        fontSize: 17.00,
-                        fontWeight: FontWeight.w500
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10,),
-                Expanded(
-                  flex: 1,
-                  child:  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black12,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.00)
-                      )
-                    ),
-                    onPressed: () {},
-                    child: const Icon(Icons.add),
-                  ),
-                )
-              ],
+        floatingActionButton: ExpandableFab(
+          distance: 60,
+          children: [
+            ActionButton(
+              onPressed: () {},
+              icon: const Icon(Icons.camera_alt_rounded),
             ),
-          ),
+            ActionButton(
+              onPressed: () {},
+              icon: const Icon(Icons.type_specimen_rounded),
+            )
+          ],
         ),
-      ],
+      )
     );
   }
 }
