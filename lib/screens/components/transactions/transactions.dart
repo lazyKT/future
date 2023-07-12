@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:future/screens/components/transactions/transaction_item.dart';
-import 'package:future/bindings/transaction_binding.dart';
+import 'package:future/bindings/budget_binding.dart';
 
 class Transactions extends StatefulWidget {
   const Transactions({ super.key });
@@ -54,7 +54,7 @@ class _TransactionsState extends State<Transactions> {
   @override
   Widget build(BuildContext context) {
 
-    var transactions = TransactionListBinding.of(context).transactions;
+    var transactions = TransactionListBinding.of(context).state.transactions;
 
     return ListView.builder(
         padding: const EdgeInsets.only(top: 0, bottom: 50),

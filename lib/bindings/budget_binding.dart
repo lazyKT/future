@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-
-import '../dto/budgetTransaction.dart';
+import 'package:future/state/budget_state.dart';
 
 class TransactionListBinding extends InheritedWidget {
 
-  final List<BudgetTransaction> transactions;
+  final BudgetState state;
 
   const TransactionListBinding({
     super.key,
     required super.child,
-    required this.transactions
+    required this.state
   });
 
   @override
   bool updateShouldNotify(TransactionListBinding oldWidget) {
-    return oldWidget.transactions != transactions;
+    var oldState = oldWidget.state;
+    if (oldState.budgetCategory == null || state.budgetCategory == null) {
+      return false;
+    }
+    return (
+      oldState.budgetCategory!.budgetCatID != state.budgetCategory!.budgetCatID ||
+      oldState.transactions.length != state.transactions.length
+    );
   }
 
   static TransactionListBinding? maybeOf(BuildContext context) {

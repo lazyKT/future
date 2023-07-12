@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:future/dto/budgetCategory.dart';
 import 'package:future/screens/components/budget_plan_highlight.dart';
 import 'package:future/screens/components/reusable/expandable_fab/expandable_fab.dart';
 import 'package:future/screens/components/transactions/transactions.dart';
+import 'package:future/state/budget_state.dart';
+import 'package:uuid/uuid.dart';
 
-import '../bindings/transaction_binding.dart';
+import '../bindings/budget_binding.dart';
 import '../dto/budgetTransaction.dart';
 import 'components/reusable/expandable_fab/action_button.dart';
 
@@ -62,10 +65,23 @@ class _HomeState extends State<Home> {
     )
   ];
 
+  final BudgetCategory budgetCategory = BudgetCategory(
+    budgetCatBalance: 600,
+    budgetCatTarget: 300,
+    budgetCatName: 'Common shared',
+    budgetCatIncome: 1000,
+    budgetCatType: BudgetCategoryType.joint,
+    budgetCatOwner: const Uuid().v4(),
+    budgetCatID: const Uuid().v4()
+  );
+
   @override
   Widget build (BuildContext context) {
     return TransactionListBinding(
-      transactions: transactions,
+      state: BudgetState(
+        transactions: transactions,
+        budgetCategory: budgetCategory
+      ),
       child: Scaffold(
         backgroundColor: Colors.white38,
         body: Column(
