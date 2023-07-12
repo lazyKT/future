@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:future/dto/budgetCategory.dart';
+import 'package:future/screens/add_transaction.dart';
 import 'package:future/screens/components/budget_plan_highlight.dart';
 import 'package:future/screens/components/reusable/expandable_fab/expandable_fab.dart';
 import 'package:future/screens/components/transactions/transactions.dart';
@@ -134,7 +135,11 @@ class _HomeState extends State<Home> {
               icon: const Icon(Icons.camera_alt_rounded),
             ),
             ActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const AddTransactionPage())
+                );
+              },
               icon: const Icon(Icons.type_specimen_rounded),
             )
           ],
