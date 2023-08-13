@@ -1,16 +1,10 @@
 # future
 
-A new Flutter project.
+*An expense tracker mobile application*
 
-## Getting Started
+### How to run
+- Go inside project directory `~/future/` and `flutter run`
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Integration with Web3Auth
+- at the login page click on **Web3 Auth** logo button
+- You will be redirected to the new page where you can sign into Web3 Auth by Google, Facebook or email.
