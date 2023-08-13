@@ -43,6 +43,17 @@ class User {
     socialPlatform: json['socialPlatform']
   );
 
+  factory User.fromWeb3AuthResponse (Map<String, dynamic> json) => User.named(
+      username: json['name'],
+      userEmail: json['email'],
+      userId: json['userId'] ?? const Uuid().v4(),
+      avatar: json['profileImage'],
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      isSocialAccount: json['isSocialAccount'] ?? false,
+      socialPlatform: json['socialPlatform']
+  );
+
   set setLastUpdated (DateTime lastUpdated) {
     updatedAt = lastUpdated;
   }

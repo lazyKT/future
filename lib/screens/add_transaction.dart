@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:future/bindings/budget_binding.dart';
 
 import 'components/transactions/add_transaction_form.dart';
 

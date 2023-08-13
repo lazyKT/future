@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:future/state/budget_state.dart';
 
-class TransactionListBinding extends InheritedWidget {
+class BudgetTransactionBinding extends InheritedWidget {
 
   final BudgetState state;
 
-  const TransactionListBinding({
+  const BudgetTransactionBinding({
     super.key,
     required super.child,
     required this.state
   });
 
   @override
-  bool updateShouldNotify(TransactionListBinding oldWidget) {
+  bool updateShouldNotify(BudgetTransactionBinding oldWidget) {
     var oldState = oldWidget.state;
     if (oldState.budgetCategory == null || state.budgetCategory == null) {
       return false;
@@ -23,12 +23,12 @@ class TransactionListBinding extends InheritedWidget {
     );
   }
 
-  static TransactionListBinding? maybeOf(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<TransactionListBinding>();
+  static BudgetTransactionBinding? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<BudgetTransactionBinding>();
   }
 
-  static TransactionListBinding of(BuildContext context) {
-    final binding = TransactionListBinding.maybeOf(context);
+  static BudgetTransactionBinding of(BuildContext context) {
+    final binding = BudgetTransactionBinding.maybeOf(context);
     assert(binding != null, "TransactionBinding is null in the context");
     return binding!;
   }

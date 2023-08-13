@@ -14,7 +14,7 @@ class _TransactionsState extends State<Transactions> {
   @override
   Widget build(BuildContext context) {
 
-    var transactions = TransactionListBinding.of(context).state.transactions;
+    var transactions = BudgetTransactionBinding.of(context).state.transactions;
 
     return ListView.builder(
         padding: const EdgeInsets.only(top: 0, bottom: 50),

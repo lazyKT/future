@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build (BuildContext context) {
-    return TransactionListBinding(
+    return BudgetTransactionBinding(
       state: BudgetState(
         transactions: transactions,
         budgetCategory: budgetCategory

@@ -1,4 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:future/bindings/budget_binding.dart';
+import 'package:future/dto/budgetTransaction.dart';
+import 'package:future/screens/components/transactions/add_transaction_form_field.dart';
+import 'package:future/state/budget_state.dart';
+import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 class AddTransactionForm extends StatefulWidget {
   const AddTransactionForm({ super.key });
@@ -22,128 +30,88 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
       key: _formKey,
       child: Column(
         children: [
+          AddTransactionFormField(
+            title: 'Date',
+            controller: _dateController,
+            icon: const Icon(Icons.calendar_today),
+            readOnly: true,
+            onTap: () async {
+              await handleDatePickerOnChange(context);
+            },
+          ),
+          AddTransactionFormField(
+            title: 'Amount',
+            icon: const Icon(Icons.attach_money_rounded),
+            readOnly: false,
+            controller: _amountController,
+          ),
+          AddTransactionFormField(
+            title: 'Category',
+            icon: const Icon(Icons.category_rounded),
+            controller: _transactionTypeController,
+            readOnly: false,
+          ),
+          AddTransactionFormField(
+            title: 'Note',
+            icon: const Icon(Icons.note_alt_rounded),
+            controller: _transactionDetailsController,
+            readOnly: false,
+          ),
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Expanded(
-                  flex: 1,
-                  child: Text(
-                    "Date",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500
-                    ),
-                  ),
-                ),
                 Expanded(
-                  flex: 3,
-                  child: TextFormField(
-                    controller: _dateController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.calendar_today),
-                    ),
-                    readOnly: true,
-                    onTap: () async {
-                      DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime.now()
-                      );
+                  flex: 1,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      addTransaction(context);
                     },
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(
-                  flex: 1,
-                  child: Text(
-                    "Amount",
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500
-                    ),
+                    child: const Text('Save'),
                   ),
                 ),
+                const SizedBox(width: 15,),
                 Expanded(
-                  flex: 3,
-                  child: TextFormField(
-                    controller: _amountController,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.monetization_on_rounded),
-                    ),
-                    onTap: () {},
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(
                   flex: 1,
-                  child: Text(
-                    "Category",
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500
-                    ),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Scan receipt'),
                   ),
                 ),
-                Expanded(
-                  flex: 3,
-                  child: TextFormField(
-                    controller: _dateController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.storage),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(
-                  flex: 1,
-                  child: Text(
-                    "Note",
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: TextFormField(
-                    controller: _dateController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.note_alt_rounded),
-                    ),
-                    onTap: () {},
-                  ),
-                )
               ],
             ),
           )
         ],
       ),
     );
+  }
+
+  Future<void> handleDatePickerOnChange (BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now()
+    );
+    if (pickedDate != null) {
+      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      setState(() {
+        _dateController.text = formattedDate;
+      });
+    }
+  }
+
+  void addTransaction (BuildContext context) {
+    BudgetTransaction transaction = BudgetTransaction(
+      transactionType: _transactionTypeController.text,
+      transactionDetails: _transactionDetailsController.text,
+      transactionAmount: double.parse(_amountController.text),
+      transactionBudgetId: const Uuid().v4(),
+      transactionTime: DateTime.parse(_dateController.text)
+    );
+    BudgetState state = BudgetTransactionBinding.of(context).state;
+    state.addTransactions(transaction);
+    Navigator.of(context).pop();
   }
 }

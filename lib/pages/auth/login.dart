@@ -1,8 +1,15 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:future/pages/app.dart';
 import 'package:future/pages/auth/register.dart';
 import 'package:future/pages/auth/utils.dart';
+import 'package:future/pages/auth/web3_auth.dart';
+import 'package:web3auth_flutter/enums.dart';
+import 'package:web3auth_flutter/input.dart';
+import 'package:web3auth_flutter/output.dart';
+import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 class Login extends StatefulWidget {
 
@@ -18,6 +25,11 @@ class _LoginState extends State<Login> {
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState () {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +197,11 @@ class _LoginState extends State<Login> {
                                 Expanded(
                                   flex: 1,
                                   child: OutlinedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => Web3AuthLoginPage())
+                                      );
+                                    },
                                     style: OutlinedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10.00)
@@ -196,7 +212,7 @@ class _LoginState extends State<Login> {
                                       child: Image(
                                         width: 50,
                                         height: 30,
-                                        image: AssetImage('lib/assets/facebook_logo.png',)
+                                        image: AssetImage('lib/assets/web3_auth.png',)
                                       )
                                     ),
                                   ),
@@ -258,4 +274,5 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
 }
